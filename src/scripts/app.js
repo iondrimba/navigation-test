@@ -1,8 +1,7 @@
 let Router = require('../../node_modules/page/page');
 let $ = require('../../node_modules/jquery/dist/jquery');
 let handlebars = require('handlebars');
-let Controller = require('./core/controller');
-
+import Controller from "./core/controller.js";
 
 class App {
     constructor() {

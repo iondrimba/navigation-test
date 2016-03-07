@@ -1,58 +1,60 @@
 var Master = require('../partials/master');
-//var Home = require('../views/home');
-//var Contact = require('../views/contact');
-///var About = require('../views/about');
-//var NotFound = require('../views/notfound');
+import Home from "../views/home.js";
+import Contact from "../views/contact.js";
+import About from "../views/about.js";
+import NotFound from "../views/notfound.js";
 
-import * as Home from "../views/home.js";
-import * as Contact from "../views/contact.js";
-import * as About from "../views/about.js";
-import * as NotFound from "../views/notfound.js";
 
-var Controller = function Controller(app) {
-    this.current;
-    this.start = function() {
+class Controller {
+    constructor(app) {
+        this.app = app;
+        console.log('Controller', this.app);
+        this.current;
+    }
+
+    start() {
         this.masterPage();
 
-        app.router('/', this.prerender.bind(this), this.home.bind(this));
-        app.router('/contact', this.prerender.bind(this), this.contact.bind(this));
-        app.router('/about', this.prerender.bind(this), this.about.bind(this));
-        app.router('*', this.notFound.bind(this));
-        app.router.exit('*', this.exit.bind(this));
-        app.router();
+        this.app.router('/', this.prerender.bind(this), this.home.bind(this));
+        this.app.router('/contact', this.prerender.bind(this), this.contact.bind(this));
+        this.app.router('/about', this.prerender.bind(this), this.about.bind(this));
+        this.app.router('*', this.notFound.bind(this));
+        this.app.router.exit('*', this.exit.bind(this));
+        this.app.router();
     };
-    this.masterPage = function(ctx, next) {
-        this.master = new Master(app);
+    masterPage(ctx, next) {
+        this.master = new Master(this.app);
         this.master.setup();
-        app.$('body').html(this.master.view());
+        this.app.$('body').html(this.master.view());
         this.master.render();
-        this.content = app.$('.content');
+        this.content = this.app.$('.content');
     };
-    this.navigate = function(path) {
-        if (path===undefined) {
+    navigate(path) {
+        if (path === undefined) {
             throw new Error('invalid path::' + path);
         }
-        app.router(path);
+        this.app.router(path);
     };
-    this.empty = function() {
+    empty() {
         this.content.empty();
     };
-    this.add = function(html) {
+    add(html) {
         this.content.html(html);
     };
 
-    this.exit = function(ctx, next) {
+    exit(ctx, next) {
         this.content.removeClass('content-show');
         this.empty();
         this.current.destroy();
         this.current = null;
         next();
     };
-    this.masterPageUpdate = function() {
+    masterPageUpdate() {
         document.title = this.current.title();
     };
-    this.createView = function(View) {
-        this.current = new View.default(app);
+    createView(View) {
+        console.log('createview', this.app);
+        this.current = new View(this.app);
         this.add(this.current.view());
         this.current.render();
         this.masterPageUpdate();
@@ -61,24 +63,24 @@ var Controller = function Controller(app) {
             clearTimeout(timeout);
         }.bind(this), 10);
     };
-    this.animateInComplete = function() {
+    animateInComplete() {
         console.log('controller animateInComplete');
     };
-    this.prerender = function(ctx, next) {
+    prerender(ctx, next) {
         next();
     };
-    this.home = function(ctx, next) {
+    home(ctx, next) {
         this.createView(Home);
     };
-    this.contact = function(ctx, next) {
+    contact(ctx, next) {
         this.createView(Contact);
     };
-    this.about = function(ctx, next) {
+    about(ctx, next) {
         this.createView(About);
     };
-    this.notFound = function(ctx, next) {
+    notFound(ctx, next) {
         this.createView(NotFound);
     };
 };
 
-module.exports = Controller;
+export default Controller;

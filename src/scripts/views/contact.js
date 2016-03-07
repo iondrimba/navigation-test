@@ -1,28 +1,27 @@
-'use strict'
-
 var template = require('../../../src/templates/contact.html');
 var Model = require('../models/contact-model');
+import BaseView from '../core/baseView.js';
 
-class Contact {
+class Contact extends BaseView {
     constructor(app) {
+        super(app);
         this.model = new Model();
-    }
+    };
     view() {
-        var view = app.handlebars.compile(template);
-        view = view(this.model);
-        return view;
+        return super.view(template, this.model);
     };
     title() {
-        return this.model.title;
+        return super.title();
     };
-    render() {};
-    destroy() {};
+    render() {
+        console.log('main render');
+    };
+    destroy() {
+        console.log('main destroy');
+    };
     animateIn(complete) {
-        app.controller.content.addClass('content-show');
-        var timeout = setTimeout(function() {
-            clearTimeout(timeout);
-            complete();
-        }, 500);
+        this.app.controller.content.addClass('content-show');
+        super.animateIn(complete);
     };
 };
 

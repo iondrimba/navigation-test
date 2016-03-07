@@ -1,24 +1,17 @@
 var template = require('../../../src/templates/about.html');
 var Model = require('../models/about-model');
+import BaseView from "../core/baseView.js";
 
-import * as BaseView from "../core/baseView.js";
-
-class About {
+class About extends BaseView {
     constructor(app) {
-        console.log('BaseView', BaseView);
-        console.log('main constructor');
-        this.model = new Model();        
+        super(app);
+        this.model = new Model();
     };
     view() {
-        console.log('main view');
-        let view = app.handlebars.compile(template);
-        view = view(this.model);
-        console.log('base view');
-        return view;
+        return super.view(template, this.model);
     };
     title() {
-        console.log('main title');
-        return this.model.title;
+        return super.title();
     };
     render() {
         console.log('main render');
@@ -27,12 +20,8 @@ class About {
         console.log('main destroy');
     };
     animateIn(complete) {
-        app.controller.content.addClass('content-show');
-        console.log('main animateIn');
-        var timeout = setTimeout(() => {
-            clearTimeout(timeout);
-            complete();
-        }, this.animationDuration);
+        this.app.controller.content.addClass('content-show');
+        super.animateIn(complete);
     };
 };
 

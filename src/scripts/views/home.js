@@ -1,42 +1,37 @@
-'use strict'
-
 var template = require('../../../src/templates/home.html');
 var Model = require('../models/home-model');
+import BaseView from '../core/baseView.js';
 
-class Home {
+class Home extends BaseView {
 
     constructor(app) {
-        this.app = app;
+        console.log('Home Construtor', app);
+        super(app);
         this.button = null;
         this.model = new Model();
     }
     view() {
-        var view = this.app.handlebars.compile(template);
-        view = view(this.model);
-        return view;
+        return super.view(template, this.model);
     };
     title() {
-        return this.model.title;
+        return super.title();
     };
     render() {
         this.button = this.app.$('.home').find('button');
-        this.button.on('click', this.click.bind(this));
+        this.button.on('click', (evt) => this.click(evt));
     };
-    click() {
-        alert('home');
+    click(evt) {
+        console.log('home', this, evt);
     };
     destroy() {
         this.button.off('click');
         this.button = null;
     };
     animateIn(complete) {
-        app.controller.content.addClass('content-show');
-        var timeout = setTimeout(function() {
-            clearTimeout(timeout);
-            complete();
-        }, 500);
+        this.app.controller.content.addClass('content-show');
+
+        super.animateIn(complete);
     };
 };
-
 
 export default Home;
