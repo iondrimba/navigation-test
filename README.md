@@ -53,8 +53,8 @@ Includes:
 Gulp Tasks:
 
 * gulp (default)
-* gulp deploy
-* gulp travis
+* gulp deploy (run tasks without browser-sync and watch)
+* gulp optimize (run optimization tasks)
 
 Structure:
 

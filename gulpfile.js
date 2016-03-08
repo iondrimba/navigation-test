@@ -45,9 +45,6 @@ gulp.task('optimize', gulpsync.sync(['minify-css', 'html-min', 'uglify', 'imagem
 //publish Task
 gulp.task('deploy', gulpsync.sync(['scsslint', 'sass', 'lint', 'imagemin', 'browserify']));
 
-//CI
-gulp.task('travis', ['deploy']);
-
 //coveralls
 //gulp.task('coveralls', require('./tasks/coveralls.js'));
 
