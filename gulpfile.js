@@ -42,4 +42,4 @@ gulp.task('default', ['scsslint', 'sass', 'browserify', 'browser-sync', 'watch']
 gulp.task('deploy', ['scsslint', 'sass', 'lint', 'browserify', 'browser-sync', 'watch', 'html-min']);
 
 //CI
-gulp.task('travis', ['scsslint', 'sass', 'lint', 'browserify', 'coveralls', 'imagemin', 'html-min', 'uglify']);
+gulp.task('travis', ['scsslint', 'sass', 'lint', 'browserify', 'imagemin', 'html-min', 'uglify']);
