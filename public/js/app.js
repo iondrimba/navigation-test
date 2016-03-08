@@ -19629,7 +19629,7 @@ var BaseView = function () {
 exports.default = BaseView;
 
 },{}],23:[function(require,module,exports){
-"use strict";
+'use strict';
 
 Object.defineProperty(exports, "__esModule", {
     value: true
@@ -19637,23 +19637,23 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _master = require("../partials/master.js");
+var _master = require('../partials/master.js');
 
 var _master2 = _interopRequireDefault(_master);
 
-var _home = require("../views/home.js");
+var _home = require('../views/home.js');
 
 var _home2 = _interopRequireDefault(_home);
 
-var _contact = require("../views/contact.js");
+var _contact = require('../views/contact.js');
 
 var _contact2 = _interopRequireDefault(_contact);
 
-var _about = require("../views/about.js");
+var _about = require('../views/about.js');
 
 var _about2 = _interopRequireDefault(_about);
 
-var _notfound = require("../views/notfound.js");
+var _notfound = require('../views/notfound.js');
 
 var _notfound2 = _interopRequireDefault(_notfound);
 
@@ -19670,7 +19670,7 @@ var Controller = function () {
     }
 
     _createClass(Controller, [{
-        key: "start",
+        key: 'start',
         value: function start() {
             this.masterPage();
 
@@ -19682,7 +19682,7 @@ var Controller = function () {
             this.app.router();
         }
     }, {
-        key: "masterPage",
+        key: 'masterPage',
         value: function masterPage(ctx, next) {
             this.master = new _master2.default(this.app);
             this.master.setup();
@@ -19691,7 +19691,7 @@ var Controller = function () {
             this.content = this.app.$('.content');
         }
     }, {
-        key: "navigate",
+        key: 'navigate',
         value: function navigate(path) {
             if (path === undefined) {
                 throw new Error('invalid path::${path}');
@@ -19699,17 +19699,17 @@ var Controller = function () {
             this.app.router(path);
         }
     }, {
-        key: "empty",
+        key: 'empty',
         value: function empty() {
             this.content.empty();
         }
     }, {
-        key: "add",
+        key: 'add',
         value: function add(html) {
             this.content.html(html);
         }
     }, {
-        key: "exit",
+        key: 'exit',
         value: function exit(ctx, next) {
             this.content.removeClass('content-show');
             this.empty();
@@ -19718,12 +19718,12 @@ var Controller = function () {
             next();
         }
     }, {
-        key: "masterPageUpdate",
+        key: 'masterPageUpdate',
         value: function masterPageUpdate() {
             document.title = this.current.title();
         }
     }, {
-        key: "createView",
+        key: 'createView',
         value: function createView(View) {
             var _this = this;
 
@@ -19738,30 +19738,30 @@ var Controller = function () {
             }, 10);
         }
     }, {
-        key: "animateInComplete",
+        key: 'animateInComplete',
         value: function animateInComplete() {}
     }, {
-        key: "prerender",
+        key: 'prerender',
         value: function prerender(ctx, next) {
             next();
         }
     }, {
-        key: "home",
+        key: 'home',
         value: function home(ctx, next) {
             this.createView(_home2.default);
         }
     }, {
-        key: "contact",
+        key: 'contact',
         value: function contact(ctx, next) {
             this.createView(_contact2.default);
         }
     }, {
-        key: "about",
+        key: 'about',
         value: function about(ctx, next) {
             this.createView(_about2.default);
         }
     }, {
-        key: "notFound",
+        key: 'notFound',
         value: function notFound(ctx, next) {
             this.createView(_notfound2.default);
         }
@@ -20410,7 +20410,7 @@ var Menu = function () {
 module.exports = Menu;
 
 },{"../../../src/templates/menu.html":46,"../models/menu-model.js":30}],36:[function(require,module,exports){
-"use strict";
+'use strict';
 
 Object.defineProperty(exports, "__esModule", {
     value: true
@@ -20420,15 +20420,15 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-var _about = require("../../../src/templates/about.html");
+var _about = require('../../../src/templates/about.html');
 
 var _about2 = _interopRequireDefault(_about);
 
-var _baseView = require("../core/baseView.js");
+var _baseView = require('../core/baseView.js');
 
 var _baseView2 = _interopRequireDefault(_baseView);
 
-var _aboutModel = require("../models/about-model.js");
+var _aboutModel = require('../models/about-model.js');
 
 var _aboutModel2 = _interopRequireDefault(_aboutModel);
 
@@ -20453,26 +20453,26 @@ var About = function (_BaseView) {
     }
 
     _createClass(About, [{
-        key: "view",
+        key: 'view',
         value: function view() {
-            return _get(Object.getPrototypeOf(About.prototype), "view", this).call(this, _about2.default, this.model);
+            return _get(Object.getPrototypeOf(About.prototype), 'view', this).call(this, _about2.default, this.model);
         }
     }, {
-        key: "title",
+        key: 'title',
         value: function title() {
-            return _get(Object.getPrototypeOf(About.prototype), "title", this);
+            return _get(Object.getPrototypeOf(About.prototype), 'title', this);
         }
     }, {
-        key: "render",
+        key: 'render',
         value: function render() {}
     }, {
-        key: "destroy",
+        key: 'destroy',
         value: function destroy() {}
     }, {
-        key: "animateIn",
+        key: 'animateIn',
         value: function animateIn(complete) {
             this.app.controller.content.addClass('content-show');
-            _get(Object.getPrototypeOf(About.prototype), "animateIn", this).call(this, complete);
+            _get(Object.getPrototypeOf(About.prototype), 'animateIn', this).call(this, complete);
         }
     }]);
 

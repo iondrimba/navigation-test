@@ -1,8 +1,8 @@
 import Master from '../partials/master.js';
-import Home from "../views/home.js";
-import Contact from "../views/contact.js";
-import About from "../views/about.js";
-import NotFound from "../views/notfound.js";
+import Home from '../views/home.js';
+import Contact from '../views/contact.js';
+import About from '../views/about.js';
+import NotFound from '../views/notfound.js';
 
 class Controller {
     constructor(app) {
