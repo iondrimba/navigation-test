@@ -32,20 +32,20 @@ Features:
 
 Testing:
 
-* $ npm test
+* $ npm test(WIP)
 
 Includes:
 
 * ES6 transpile via Babel
 * BrowserSync
 * Browserify
-* Karma (test runner)
-* Jasmine (test library)
+* Karma (test runner) WIP
+* Jasmine (test library) WIP
 * Sass
-* ESLint
+* ESLint (not supported yet)
 * Scss Lint (Requires Ruby and [scss-lint])
 * Imagemin (images optimization)
-* Uglify
+* Uglify (not supported yet)
 * Watch
 * Html-Min
 * Post-Css (autoprefixer)
