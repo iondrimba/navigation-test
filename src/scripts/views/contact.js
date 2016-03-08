@@ -1,17 +1,17 @@
 var template = require('../../../src/templates/contact.html');
-var Model = require('../models/contact-model');
+import ContactModel from '../models/contact-model.js';
 import BaseView from '../core/baseView.js';
 
 class Contact extends BaseView {
     constructor(app) {
         super(app);
-        this.model = new Model();
+        this.model = new ContactModel();
     };
     view() {
         return super.view(template, this.model);
     };
     title() {
-        return super.title();
+        return super.title;
     };
     render() {
         console.log('main render');

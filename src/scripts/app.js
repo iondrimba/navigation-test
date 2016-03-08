@@ -11,6 +11,9 @@ class App {
         this.controller = new Controller(this);
         this.controller.start();
     }
+    compile(template) {
+        return this.handlebars.compile(template);
+    }
 }
 
 window.app = new App();

@@ -1,18 +1,33 @@
-var MenuModel = function MenuModel() {
-    this.links = [{
-        label: 'Home',
-        href: '/'
-    }, {
-        label: 'Contact',
-        href: '/contact'
-    }, {
-        label: 'About',
-        href: '/about'
-    }, {
-        label: 'Not Found',
-        href: '/---'
-    }, ];
-};
+import BaseModel from './base-model.js';
 
+class MenuModel extends BaseModel {
+    constructor() {
+        super();
+        this.links = [
+            {
+                label: 'Home',
+                href: '/'
+            },
+            {
+                label: 'Contact',
+                href: '/contact'
+            },
+            {
+                label: 'About',
+                href: '/about'
+            },
+            {
+                label: 'Not Found',
+                href: '/---'
+            }
+        ];
+    }
+    set links(data) {
+        return this._links = data;
+    }
+    get links() {
+        return this._links;
+    }
+}
 
-module.exports = MenuModel;
+export default MenuModel;

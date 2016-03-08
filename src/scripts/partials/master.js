@@ -1,5 +1,5 @@
 var template = require('../../../src/templates/master.html');
-var Model = require('../models/home-model');
+import HomeModel from '../models/home-model.js';
 var Header = require('./header');
 var Menu = require('./menu');
 var Footer = require('./footer');
@@ -11,12 +11,12 @@ var Master = function Master(app) {
         this.menu = new Menu(app);
         this.footer = new Footer(app);
     };
-    this.model = new Model();
+    this.model = new HomeModel();
     this.view = function() {
         this.model.headerView =  this.header.view();
         this.model.menuView = this.menu.view();
         this.model.footerView = this.footer.view();
-        var view = app.handlebars.compile(template);
+        var view = app.compile(template);
         view = view(this.model);
         return view;
     };

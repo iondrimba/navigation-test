@@ -1,9 +1,11 @@
 var template = require('../../../src/templates/menu.html');
-var Model = require('../models/menu-model');
+import MenuModel from '../models/menu-model.js';
+
+
 var Menu = function Menu(app) {
-    this.model = new Model();
+    this.model = new MenuModel();
     this.view = function() {
-        var view = app.handlebars.compile(template);
+        var view = app.compile(template);
         view = view(this.model);
         return view;
     };

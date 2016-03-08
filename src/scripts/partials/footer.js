@@ -1,9 +1,10 @@
 var template = require('../../../src/templates/footer.html');
-var Model = require('../models/footer-model');
+import FooterModel from '../models/footer-model.js';
+
 var Footer = function Header(app) {
-    this.model = new Model();
+    this.model = new FooterModel();
     this.view = function() {
-        var view = app.handlebars.compile(template);
+        var view = app.compile(template);
         view = view(this.model);
         return view;
     };

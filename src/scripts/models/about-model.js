@@ -1,7 +1,16 @@
-var AboutModel = function AboutModel() {
-    'use strict'
-    this.title = 'About';
+import BaseModel from './base-model.js';
+
+class AboutModel extends BaseModel {
+    constructor() {
+        super();
+        super.title = 'About';
+    }
+    set title(string) {
+        super.title = string;
+    };
+    get title() {
+        return super.title;
+    };
 };
 
-
-module.exports = AboutModel;
+export default AboutModel;

@@ -4,14 +4,11 @@ import Contact from "../views/contact.js";
 import About from "../views/about.js";
 import NotFound from "../views/notfound.js";
 
-
 class Controller {
     constructor(app) {
         this.app = app;
-        console.log('Controller', this.app);
         this.current;
     }
-
     start() {
         this.masterPage();
 
@@ -52,8 +49,7 @@ class Controller {
     masterPageUpdate() {
         document.title = this.current.title();
     };
-    createView(View) {
-        console.log('createview', this.app);
+    createView(View) {        
         this.current = new View(this.app);
         this.add(this.current.view());
         this.current.render();
@@ -64,7 +60,7 @@ class Controller {
         }.bind(this), 10);
     };
     animateInComplete() {
-        console.log('controller animateInComplete');
+        
     };
     prerender(ctx, next) {
         next();

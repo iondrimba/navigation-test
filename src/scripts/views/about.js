@@ -1,17 +1,18 @@
 var template = require('../../../src/templates/about.html');
 var Model = require('../models/about-model');
 import BaseView from "../core/baseView.js";
+import AboutModel from "../models/about-model.js";
 
 class About extends BaseView {
     constructor(app) {
         super(app);
-        this.model = new Model();
+        this.model = new AboutModel();
     };
     view() {
         return super.view(template, this.model);
     };
     title() {
-        return super.title();
+        return super.title;
     };
     render() {
         console.log('main render');

@@ -1,6 +1,16 @@
-var HomeModel = function HomeModel() {
-    this.title = 'Home 1';
+import BaseModel from './base-model.js';
+
+class HomeModel extends BaseModel {
+    constructor() {
+        super();
+        super.title = 'Home';
+    }
+    set title(string) {
+        super.title = string;
+    }
+    get title() {
+        return super.title;
+    }
 };
 
-
-module.exports = HomeModel;
+export default HomeModel;

@@ -1,27 +1,25 @@
 var template = require('../../../src/templates/home.html');
-var Model = require('../models/home-model');
+import HomeModel from '../models/home-model.js';
 import BaseView from '../core/baseView.js';
 
 class Home extends BaseView {
-
-    constructor(app) {
-        console.log('Home Construtor', app);
+    constructor(app) {        
         super(app);
         this.button = null;
-        this.model = new Model();
+        this.model = new HomeModel();
     }
     view() {
         return super.view(template, this.model);
     };
     title() {
-        return super.title();
+        return super.title;
     };
     render() {
         this.button = this.app.$('.home').find('button');
         this.button.on('click', (evt) => this.click(evt));
     };
     click(evt) {
-        console.log('home', this, evt);
+        alert('Click');
     };
     destroy() {
         this.button.off('click');
@@ -29,7 +27,6 @@ class Home extends BaseView {
     };
     animateIn(complete) {
         this.app.controller.content.addClass('content-show');
-
         super.animateIn(complete);
     };
 };

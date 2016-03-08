@@ -18,6 +18,7 @@ __TODO:__
  * Write more tests
 
 __Features:__
+ * ES6 ready  
  * Router system with pushstate (page.js)
  * Templating engine (handlebars.js)
  * Module system CommonJs (browserify)
@@ -29,6 +30,7 @@ __Testing:__
  * $ npm test
 
 __Includes:__
+  * ES6 transpile via Babel
   * BrowserSync
   * Browserify 
   * Karma (test runner)
@@ -75,4 +77,4 @@ __Structure:__
 ````
 
 [scss-lint]:<https://github.com/brigade/scss-lint#installation>
-[Live demo]:<http://iondrimba.github.io/SPATemplate/>
+[Live demo]:<http://iondrimba.github.io/ES6StarterProject/>

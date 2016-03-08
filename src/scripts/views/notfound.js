@@ -1,17 +1,17 @@
 var template = require('../../../src/templates/notfound.html');
-var Model = require('../models/notfound-model');
+import NotFoundModel from '../models/notfound-model';
 import BaseView from '../core/baseView.js';
 
 class NotFound extends BaseView {
     constructor(app) {
         super(app);
-        this.model = new Model();
+        this.model = new NotFoundModel();
     };
     view() {
         return super.view(template, this.model);
     };
     title() {
-        return super.title();
+        return super.title;
     };
     render() {
         console.log('main render');

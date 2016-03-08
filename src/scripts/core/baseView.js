@@ -1,27 +1,29 @@
 class BaseView {
 
     constructor(app) {
-        console.log('BaseView constructor', app);
+        this._title = '';
         this.app = app;
         this.animationDuration = 500;
     }
     view(template, model) {
-        console.log('base view');
-        var view = this.app.handlebars.compile(template);
+        let view = this.app.compile(template);
         view = view(model);
         return view;
     }
-    title() {
-        console.log('base title');
+    set title(string) {
+        this._title = string;
+    }
+    get title() {
+        return this._title;
     }
     render() {
-        console.log('base render');
+        
     }
     destroy() {
-        console.log('base destroy');
+        
     }
     animateIn(complete) {
-        var timeout = setTimeout(function() {
+        let timeout = setTimeout(function() {
             clearTimeout(timeout);
             complete();
         }, this.animationDuration);

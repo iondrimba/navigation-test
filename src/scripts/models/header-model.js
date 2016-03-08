@@ -1,7 +1,15 @@
-var HeaderModel = function HeaderModel() {
-	'use strict';
-    this.title = 'Header';
+import BaseModel from './base-model.js';
+
+class HeaderModel extends BaseModel {
+    constructor() {
+        super();
+    }
+    set title(string) {
+        super.title = string;
+    };
+    get title() {
+        return super.title;
+    };
 };
 
-
-module.exports = HeaderModel;
+export default HeaderModel;

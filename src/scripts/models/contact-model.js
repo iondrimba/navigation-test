@@ -1,7 +1,16 @@
-var ContactModel = function ContactModel() {
-    'use strict'
-    this.title = 'Contact';
+import BaseModel from './base-model.js';
+
+class ContactModel extends BaseModel {
+    constructor() {
+        super();
+        super.title = 'Contact';
+    }
+    set title(string) {
+        super.title = string;
+    }
+    get title() {
+        return super.title;
+    }
 };
 
-
-module.exports = ContactModel;
+export default ContactModel;
