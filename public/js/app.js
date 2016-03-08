@@ -19589,7 +19589,7 @@ var BaseView = function () {
 
         this._title = '';
         this.app = app;
-        this.animationDuration = 500;
+        var animationDuration = 500;
     }
 
     _createClass(BaseView, [{
@@ -19611,7 +19611,7 @@ var BaseView = function () {
             var timeout = setTimeout(function () {
                 clearTimeout(timeout);
                 complete();
-            }, this.animationDuration);
+            }, BaseView.animationDuration);
         }
     }, {
         key: 'title',
@@ -19637,6 +19637,10 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
+var _master = require("../partials/master.js");
+
+var _master2 = _interopRequireDefault(_master);
+
 var _home = require("../views/home.js");
 
 var _home2 = _interopRequireDefault(_home);
@@ -19656,8 +19660,6 @@ var _notfound2 = _interopRequireDefault(_notfound);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-var Master = require('../partials/master');
 
 var Controller = function () {
     function Controller(app) {
@@ -19682,7 +19684,7 @@ var Controller = function () {
     }, {
         key: "masterPage",
         value: function masterPage(ctx, next) {
-            this.master = new Master(this.app);
+            this.master = new _master2.default(this.app);
             this.master.setup();
             this.app.$('body').html(this.master.view());
             this.master.render();
@@ -19692,7 +19694,7 @@ var Controller = function () {
         key: "navigate",
         value: function navigate(path) {
             if (path === undefined) {
-                throw new Error('invalid path::' + path);
+                throw new Error('invalid path::${path}');
             }
             this.app.router(path);
         }
@@ -19723,14 +19725,17 @@ var Controller = function () {
     }, {
         key: "createView",
         value: function createView(View) {
+            var _this = this;
+
             this.current = new View(this.app);
             this.add(this.current.view());
             this.current.render();
             this.masterPageUpdate();
+
             var timeout = setTimeout(function () {
-                this.current.animateIn(this.animateInComplete);
+                _this.current.animateIn(_this.animateInComplete);
                 clearTimeout(timeout);
-            }.bind(this), 10);
+            }, 10);
         }
     }, {
         key: "animateInComplete",
@@ -19769,7 +19774,7 @@ var Controller = function () {
 
 exports.default = Controller;
 
-},{"../partials/master":34,"../views/about.js":36,"../views/contact.js":37,"../views/home.js":38,"../views/notfound.js":39}],24:[function(require,module,exports){
+},{"../partials/master.js":34,"../views/about.js":36,"../views/contact.js":37,"../views/home.js":38,"../views/notfound.js":39}],24:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -20194,29 +20199,59 @@ exports.default = NotFoundModel;
 },{"./base-model.js":25}],32:[function(require,module,exports){
 'use strict';
 
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _footer = require('../../../src/templates/footer.html');
+
+var _footer2 = _interopRequireDefault(_footer);
+
 var _footerModel = require('../models/footer-model.js');
 
 var _footerModel2 = _interopRequireDefault(_footerModel);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var template = require('../../../src/templates/footer.html');
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
+var Footer = function () {
+    function Footer(app) {
+        _classCallCheck(this, Footer);
 
-var Footer = function Header(app) {
-    this.model = new _footerModel2.default();
-    this.view = function () {
-        var view = app.compile(template);
-        view = view(this.model);
-        return view;
-    };
-    this.render = function () {};
-};
+        this.app = app;
+        this.model = new _footerModel2.default();
+    }
 
-module.exports = Footer;
+    _createClass(Footer, [{
+        key: 'view',
+        value: function view() {
+            var view = this.app.compile(_footer2.default);
+            view = view(this.model);
+            return view;
+        }
+    }, {
+        key: 'render',
+        value: function render() {}
+    }]);
+
+    return Footer;
+}();
+
+;
+
+exports.default = Footer;
 
 },{"../../../src/templates/footer.html":42,"../models/footer-model.js":27}],33:[function(require,module,exports){
 'use strict';
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _header = require('../../../src/templates/header.html');
+
+var _header2 = _interopRequireDefault(_header);
 
 var _headerModel = require('../models/header-model.js');
 
@@ -20224,67 +20259,120 @@ var _headerModel2 = _interopRequireDefault(_headerModel);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var template = require('../../../src/templates/header.html');
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
+var Header = function () {
+    function Header(app) {
+        _classCallCheck(this, Header);
 
-var Header = function Header(app) {
-    this.model = new _headerModel2.default();
-    this.view = function () {
-        var view = app.compile(template);
-        view = view(this.model);
-        return view;
-    };
-    this.render = function () {};
-};
+        this.app = app;
+        this.model = new _headerModel2.default();
+    }
+
+    _createClass(Header, [{
+        key: 'view',
+        value: function view() {
+            var view = this.app.compile(_header2.default);
+            view = view(this.model);
+            return view;
+        }
+    }, {
+        key: 'render',
+        value: function render() {}
+    }]);
+
+    return Header;
+}();
+
+;
 
 module.exports = Header;
 
 },{"../../../src/templates/header.html":43,"../models/header-model.js":28}],34:[function(require,module,exports){
 'use strict';
 
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _master = require('../../../src/templates/master.html');
+
+var _master2 = _interopRequireDefault(_master);
+
 var _homeModel = require('../models/home-model.js');
 
 var _homeModel2 = _interopRequireDefault(_homeModel);
 
+var _header = require('./header');
+
+var _header2 = _interopRequireDefault(_header);
+
+var _menu = require('./menu');
+
+var _menu2 = _interopRequireDefault(_menu);
+
+var _footer = require('./footer');
+
+var _footer2 = _interopRequireDefault(_footer);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var template = require('../../../src/templates/master.html');
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var Header = require('./header');
-var Menu = require('./menu');
-var Footer = require('./footer');
+var Master = function () {
+    function Master(app) {
+        _classCallCheck(this, Master);
 
-var Master = function Master(app) {
-    var view = template;
-    this.setup = function () {
-        this.header = new Header(app);
-        this.menu = new Menu(app);
-        this.footer = new Footer(app);
-    };
-    this.model = new _homeModel2.default();
-    this.view = function () {
-        this.model.headerView = this.header.view();
-        this.model.menuView = this.menu.view();
-        this.model.footerView = this.footer.view();
-        var view = app.compile(template);
-        view = view(this.model);
-        return view;
-    };
-    this.render = function () {
+        this.app = app;
+        this.model = new _homeModel2.default();
+    }
 
-        this.header.render();
+    _createClass(Master, [{
+        key: 'setup',
+        value: function setup() {
+            this.header = new _header2.default(this.app);
+            this.menu = new _menu2.default(this.app);
+            this.footer = new _footer2.default(this.app);
+        }
+    }, {
+        key: 'view',
+        value: function view() {
+            this.model.headerView = this.header.view();
+            this.model.menuView = this.menu.view();
+            this.model.footerView = this.footer.view();
 
-        this.menu.render();
+            var view = this.app.compile(_master2.default);
+            view = view(this.model);
+            return view;
+        }
+    }, {
+        key: 'render',
+        value: function render() {
 
-        this.footer.render();
-    };
-    this.destroy = function () {};
-};
+            this.header.render();
+
+            this.menu.render();
+
+            this.footer.render();
+        }
+    }, {
+        key: 'destroy',
+        value: function destroy() {}
+    }]);
+
+    return Master;
+}();
+
+;
 
 module.exports = Master;
 
 },{"../../../src/templates/master.html":45,"../models/home-model.js":29,"./footer":32,"./header":33,"./menu":35}],35:[function(require,module,exports){
 'use strict';
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _menu = require('../../../src/templates/menu.html');
+
+var _menu2 = _interopRequireDefault(_menu);
 
 var _menuModel = require('../models/menu-model.js');
 
@@ -20292,23 +20380,37 @@ var _menuModel2 = _interopRequireDefault(_menuModel);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var template = require('../../../src/templates/menu.html');
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
+var Menu = function () {
+    function Menu(app) {
+        _classCallCheck(this, Menu);
 
-var Menu = function Menu(app) {
-    this.model = new _menuModel2.default();
-    this.view = function () {
-        var view = app.compile(template);
-        view = view(this.model);
-        return view;
-    };
-    this.render = function () {};
-};
+        this.app = app;
+        this.model = new _menuModel2.default();
+    }
+
+    _createClass(Menu, [{
+        key: 'view',
+        value: function view() {
+            var view = this.app.compile(_menu2.default);
+            view = view(this.model);
+            return view;
+        }
+    }, {
+        key: 'render',
+        value: function render() {}
+    }]);
+
+    return Menu;
+}();
+
+;
 
 module.exports = Menu;
 
 },{"../../../src/templates/menu.html":46,"../models/menu-model.js":30}],36:[function(require,module,exports){
-'use strict';
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
     value: true
@@ -20318,11 +20420,15 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-var _baseView = require('../core/baseView.js');
+var _about = require("../../../src/templates/about.html");
+
+var _about2 = _interopRequireDefault(_about);
+
+var _baseView = require("../core/baseView.js");
 
 var _baseView2 = _interopRequireDefault(_baseView);
 
-var _aboutModel = require('../models/about-model.js');
+var _aboutModel = require("../models/about-model.js");
 
 var _aboutModel2 = _interopRequireDefault(_aboutModel);
 
@@ -20333,9 +20439,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var template = require('../../../src/templates/about.html');
-var Model = require('../models/about-model');
 
 var About = function (_BaseView) {
     _inherits(About, _BaseView);
@@ -20350,30 +20453,26 @@ var About = function (_BaseView) {
     }
 
     _createClass(About, [{
-        key: 'view',
+        key: "view",
         value: function view() {
-            return _get(Object.getPrototypeOf(About.prototype), 'view', this).call(this, template, this.model);
+            return _get(Object.getPrototypeOf(About.prototype), "view", this).call(this, _about2.default, this.model);
         }
     }, {
-        key: 'title',
+        key: "title",
         value: function title() {
-            return _get(Object.getPrototypeOf(About.prototype), 'title', this);
+            return _get(Object.getPrototypeOf(About.prototype), "title", this);
         }
     }, {
-        key: 'render',
-        value: function render() {
-            console.log('main render');
-        }
+        key: "render",
+        value: function render() {}
     }, {
-        key: 'destroy',
-        value: function destroy() {
-            console.log('main destroy');
-        }
+        key: "destroy",
+        value: function destroy() {}
     }, {
-        key: 'animateIn',
+        key: "animateIn",
         value: function animateIn(complete) {
             this.app.controller.content.addClass('content-show');
-            _get(Object.getPrototypeOf(About.prototype), 'animateIn', this).call(this, complete);
+            _get(Object.getPrototypeOf(About.prototype), "animateIn", this).call(this, complete);
         }
     }]);
 
@@ -20384,7 +20483,7 @@ var About = function (_BaseView) {
 
 exports.default = About;
 
-},{"../../../src/templates/about.html":40,"../core/baseView.js":22,"../models/about-model":24,"../models/about-model.js":24}],37:[function(require,module,exports){
+},{"../../../src/templates/about.html":40,"../core/baseView.js":22,"../models/about-model.js":24}],37:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -20394,6 +20493,10 @@ Object.defineProperty(exports, "__esModule", {
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
+
+var _contact = require('../../../src/templates/contact.html');
+
+var _contact2 = _interopRequireDefault(_contact);
 
 var _contactModel = require('../models/contact-model.js');
 
@@ -20411,8 +20514,6 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var template = require('../../../src/templates/contact.html');
-
 var Contact = function (_BaseView) {
     _inherits(Contact, _BaseView);
 
@@ -20428,7 +20529,7 @@ var Contact = function (_BaseView) {
     _createClass(Contact, [{
         key: 'view',
         value: function view() {
-            return _get(Object.getPrototypeOf(Contact.prototype), 'view', this).call(this, template, this.model);
+            return _get(Object.getPrototypeOf(Contact.prototype), 'view', this).call(this, _contact2.default, this.model);
         }
     }, {
         key: 'title',
@@ -20437,14 +20538,10 @@ var Contact = function (_BaseView) {
         }
     }, {
         key: 'render',
-        value: function render() {
-            console.log('main render');
-        }
+        value: function render() {}
     }, {
         key: 'destroy',
-        value: function destroy() {
-            console.log('main destroy');
-        }
+        value: function destroy() {}
     }, {
         key: 'animateIn',
         value: function animateIn(complete) {
@@ -20471,6 +20568,10 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
+var _home = require('../../../src/templates/home.html');
+
+var _home2 = _interopRequireDefault(_home);
+
 var _homeModel = require('../models/home-model.js');
 
 var _homeModel2 = _interopRequireDefault(_homeModel);
@@ -20486,8 +20587,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var template = require('../../../src/templates/home.html');
 
 var Home = function (_BaseView) {
     _inherits(Home, _BaseView);
@@ -20505,7 +20604,7 @@ var Home = function (_BaseView) {
     _createClass(Home, [{
         key: 'view',
         value: function view() {
-            return _get(Object.getPrototypeOf(Home.prototype), 'view', this).call(this, template, this.model);
+            return _get(Object.getPrototypeOf(Home.prototype), 'view', this).call(this, _home2.default, this.model);
         }
     }, {
         key: 'title',
@@ -20532,6 +20631,7 @@ var Home = function (_BaseView) {
         value: function destroy() {
             this.button.off('click');
             this.button = null;
+            this.model = null;
         }
     }, {
         key: 'animateIn',
@@ -20559,6 +20659,10 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
+var _notfound = require('../../../src/templates/notfound.html');
+
+var _notfound2 = _interopRequireDefault(_notfound);
+
 var _notfoundModel = require('../models/notfound-model');
 
 var _notfoundModel2 = _interopRequireDefault(_notfoundModel);
@@ -20575,8 +20679,6 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var template = require('../../../src/templates/notfound.html');
-
 var NotFound = function (_BaseView) {
     _inherits(NotFound, _BaseView);
 
@@ -20592,7 +20694,7 @@ var NotFound = function (_BaseView) {
     _createClass(NotFound, [{
         key: 'view',
         value: function view() {
-            return _get(Object.getPrototypeOf(NotFound.prototype), 'view', this).call(this, template, this.model);
+            return _get(Object.getPrototypeOf(NotFound.prototype), 'view', this).call(this, _notfound2.default, this.model);
         }
     }, {
         key: 'title',
@@ -20601,14 +20703,10 @@ var NotFound = function (_BaseView) {
         }
     }, {
         key: 'render',
-        value: function render() {
-            console.log('main render');
-        }
+        value: function render() {}
     }, {
         key: 'destroy',
-        value: function destroy() {
-            console.log('main destroy');
-        }
+        value: function destroy() {}
     }, {
         key: 'animateIn',
         value: function animateIn(complete) {
