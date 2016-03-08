@@ -19595,7 +19595,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var Router = require('../../node_modules/page/page');
+var page = require('../../node_modules/page/page');
 var $ = require('../../node_modules/jquery/dist/jquery');
 var handlebars = require('handlebars');
 
@@ -19604,7 +19604,7 @@ var App = function () {
         _classCallCheck(this, App);
 
         this.$ = $;
-        this.router = Router;
+        this.router = page;
         this.handlebars = handlebars;
         this.controller = new _controller2.default(this);
         this.controller.start();

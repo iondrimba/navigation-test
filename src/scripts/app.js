@@ -1,12 +1,12 @@
-let Router = require('../../node_modules/page/page');
-let $ = require('../../node_modules/jquery/dist/jquery');
-let handlebars = require('handlebars');
+var page = require('../../node_modules/page/page');
+var $ = require('../../node_modules/jquery/dist/jquery');
+var handlebars = require('handlebars');
 import Controller from "./core/controller.js";
 
 class App {
     constructor() {
         this.$ = $;
-        this.router = Router;
+        this.router = page;
         this.handlebars = handlebars;
         this.controller = new Controller(this);
         this.controller.start();
