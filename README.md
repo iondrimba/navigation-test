@@ -25,6 +25,7 @@ Features:
 * ES6 ready
 * Router system with pushstate (page.js)
 * Templating engine (handlebars.js)
+* Tests
 * Module system CommonJs (browserify)
 
 > In order to test if Pushstate is working
@@ -32,20 +33,21 @@ Features:
 
 Testing:
 
-* $ npm test(WIP)
+* $ npm test
 
 Includes:
 
 * ES6 transpile via Babel
 * BrowserSync
 * Browserify
-* Karma (test runner) WIP
-* Jasmine (test library) WIP
+* Karma 
+* Jasmine 
+* Code Coverage (Coverall) not working yet
 * Sass
 * ESLint
 * Scss Lint (Requires Ruby and [scss-lint])
 * Imagemin (images optimization)
-* Uglify (not supported yet)
+* Uglify
 * Watch
 * Html-Min
 * Post-Css (autoprefixer)
