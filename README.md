@@ -19,7 +19,7 @@ Ready to go ES6 project for SPA template.
  gulp
 ```
 
-[Live demo]
+#[Live demo]
 
 TODO:
 
