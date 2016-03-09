@@ -21,12 +21,12 @@ Ready to go ES6 project for SPA template.
 
 ###[Live demo]
 
-TODO:
+####TODO:
 
 * Make Travis and Tests work
 
 
-Features:
+####Features:
 
 * ES6 ready
 * Router system with pushstate (page.js)
