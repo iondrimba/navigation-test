@@ -45,6 +45,13 @@ module.exports = function(config) {
             'spec/*.js': ['babel', 'browserify']
         },
         coverageReporter: {
+            instrumenters: { isparta: require('isparta') },
+            instrumenter: {
+                'spec/*.js': 'isparta'
+            },
+            instrumenterOptions: {
+                isparta: { babel: { presets: 'es2015' } }
+            },
             dir: 'test/reports/coverage',
             reporters: [
                 // reporters not supporting the `file` property 
