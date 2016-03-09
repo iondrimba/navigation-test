@@ -7,6 +7,12 @@ Ready to go ES6 project for SPA template.
 
 ## Installation
 
+REQUIREMENTS:
+
+* NodeJs
+* Gulp
+
+
 ```sh
  git clone https://github.com/iondrimba/ES6StarterProject.git
  cd ES6StarterProject
