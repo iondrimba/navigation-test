@@ -5,7 +5,7 @@ Ready to go ES6 project for SPA template.
 [![Travis build status](https://travis-ci.org/iondrimba/ES6StarterProject.svg?branch=master)](https://travis-ci.org/iondrimba/ES6StarterProject) [![Coverage Status](https://coveralls.io/repos/github/iondrimba/ES6StarterProject/badge.svg?branch=master)](https://coveralls.io/github/iondrimba/ES6StarterProject?branch=master)
 
 
-### REQUIREMENTS:
+####Requires:
 
 * NodeJs
 * Gulp
@@ -37,11 +37,11 @@ Ready to go ES6 project for SPA template.
 > In order to test if Pushstate is working
 > you have to host it on apache so it can reads the .htaccess file
 
-Testing:
+####Testing:
 
 * $ npm test
 
-Includes:
+####Includes:
 
 * ES6 transpile via Babel
 * BrowserSync
@@ -58,13 +58,13 @@ Includes:
 * Html-Min
 * Post-Css (autoprefixer)
 
-Gulp Tasks:
+####Gulp Tasks:
 
 * gulp (default)
 * gulp deploy (run tasks without browser-sync and watch)
 * gulp optimize (run optimization tasks)
 
-Structure:
+####Structure:
 
 ````bash
 ├── public/
