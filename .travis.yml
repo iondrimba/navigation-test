@@ -13,3 +13,4 @@ before_script:
 script: 
  - gulp deploy 
  - gulp optimize 
+ - npm test
