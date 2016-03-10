@@ -13,7 +13,7 @@ Ready to go ES6 project for SPA template.
 ## Installation
 
 ```sh
- git clone https://github.com/iondrimba/ES6StarterProject.git
+ git clone https://github.com/iondrimba/ES6StarterProject.git 
  cd ES6StarterProject
  npm install
  gulp
@@ -48,7 +48,7 @@ Ready to go ES6 project for SPA template.
 * Browserify
 * Karma 
 * Jasmine 
-* Code Coverage (Coverall) not working yet
+* Code Coverage
 * Sass
 * ESLint
 * Scss Lint (Requires Ruby and [scss-lint])
