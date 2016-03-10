@@ -23,7 +23,7 @@ Ready to go ES6 project for SPA template.
 
 ####TODO:
 
-* Make Travis and Tests work
+* Write more tests
 
 
 ####Features:
