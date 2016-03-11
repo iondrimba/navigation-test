@@ -29,6 +29,7 @@ Reduce time spent by developers looking to work today with all the new ES6 featu
 
 * Write more tests
 
+![Alt text](picture.png)
 
 #### Features:
 
