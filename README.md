@@ -1,11 +1,11 @@
 # ES6 Starter Project
 
-Ready to go ES6 project for SPA template.
+Ready to go ES6 project starter with Tests and Coverage.
 
 [![Travis build status](https://travis-ci.org/iondrimba/ES6StarterProject.svg?branch=master)](https://travis-ci.org/iondrimba/ES6StarterProject) [![Coverage Status](https://coveralls.io/repos/github/iondrimba/ES6StarterProject/badge.svg?branch=master)](https://coveralls.io/github/iondrimba/ES6StarterProject?branch=master)
 
 
-####Requires:
+#### Requires:
 
 * NodeJs
 * Gulp
@@ -19,29 +19,35 @@ Ready to go ES6 project for SPA template.
  gulp
 ```
 
-###[Live demo]
+### [Live demo]
+ 
+#### GOAL:
+Reduce time spent by developers looking to work today with all the new ES6 features, it also includes Tests and Coverage. I chose to leave it simples as possible, meaning there is no MV* Framework dependecy.
 
-####TODO:
+
+#### TODO:
 
 * Write more tests
 
 
-####Features:
+#### Features:
 
 * ES6 ready
 * Router system with pushstate (page.js)
 * Templating engine (handlebars.js)
-* Tests
+* Tests (Jasmine + karma)
+* Coverage (Coveralls)
+* CI (Travis)
 * Module system CommonJs (browserify)
 
 > In order to test if Pushstate is working
 > you have to host it on apache so it can reads the .htaccess file
 
-####Testing:
+#### Testing:
 
 * $ npm test
 
-####Includes:
+#### Includes:
 
 * ES6 transpile via Babel
 * BrowserSync
@@ -64,27 +70,42 @@ Ready to go ES6 project for SPA template.
 * gulp deploy (run tasks without browser-sync and watch)
 * gulp optimize (run optimization tasks)
 
-####Structure:
+#### Structure:
 
 ````bash
 ├── public/
-│    ├─── js/  (.gitignored)
-│    ├─── css/  (.gitignored)
+│    ├─── css/ 
+│    ├─── js/
 │    ├─── images/
 │    ├─── .htaccess
 │    └─── index.html
-│── spec/(jasmine tests)
+│
+│── spec/(jasmine spec files)
+│
 │── src/
+│    ├── images/
 │    ├── scripts/
-│    └── scss/
+│	 │    ├─── core/ 
+│	 │    ├─── models/
+│	 │    ├─── partials/
+│	 │    ├─── views
+│	 │    └─── app.js
+│	 │
+│	 ├── scss/
+│	 │    ├─── components/ 
+│	 │    ├─── partials/
+│	 │    ├─── views/
+│	 │    └─── app.scss
+│	 │
 │    └── templates/
+│
 │── tasks/
-│── test/(coverage report)
 │
 │── .gitignore
 │── .travis.yml
-│── karma.conf.js
 │── gulpfile.js
+│── karma.conf.js
+│── LICENSE
 │── lint.yml
 │── package.json
 └── README.md
