@@ -1,18 +1,22 @@
 {
-  "name": "spa_template",
+  "name": "es6starterproject",
   "version": "0.0.1",
-  "description": "Simple ready to go SPA template. No framework dependency. To be used for simple static websites with little interactions.",
+  "description": "Ready to go ES6 project starter with Tests and Coverage. No MV* framework dependency.",
   "main": "gulpfile.js",
   "keywords": [
     "ES6",
     "SPA",
     "Template",
+    "Jasmine",
+    "Tests",
+    "Coverage",
+    "Karma",
     "Browserify",
     "Gulp"
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/iondrimba/SPATemplate.git"
+    "url": "git+https://github.com/iondrimba/ES6StarterProject.git"
   },
   "scripts": {
     "test": "karma start"
