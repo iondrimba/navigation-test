@@ -77,8 +77,10 @@ Reduce time spent by developers looking to work today with all the new ES6 featu
 ####Semantic Versioning:
 
 The bump-versions tasks should be executed after your deploy and optimize task.
-The task will rename the file app.js to app.version.js, the same will be done to the app.css.
-After that the index.html is updated with the new file references.
+The task will:
+1.Rename the file app.js to app.version.js
+2.Rename the file app.css to app.version.css
+3.Will update the index.html with the new file references.
 
 #### Structure:
 
@@ -95,18 +97,18 @@ After that the index.html is updated with the new file references.
 │── src/
 │    ├── images/
 │    ├── scripts/
-│	 │    ├─── core/ 
-│	 │    ├─── models/
-│	 │    ├─── partials/
-│	 │    ├─── views
-│	 │    └─── app.js
-│	 │
-│	 ├── scss/
-│	 │    ├─── components/ 
-│	 │    ├─── partials/
-│	 │    ├─── views/
-│	 │    └─── app.scss
-│	 │
+│	   │    ├─── core/ 
+│	   │    ├─── models/
+│	   │    ├─── partials/
+│	   │    ├─── views
+│	   │    └─── app.js
+│	   │
+│	   ├── scss/
+│	   │    ├─── components/ 
+│	   │    ├─── partials/
+│	   │    ├─── views/
+│	   │    └─── app.scss
+│	   │
 │    └── templates/
 │
 │── tasks/
