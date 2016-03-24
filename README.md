@@ -76,7 +76,7 @@ Reduce time spent by developers looking to work today with all the new ES6 featu
 
 ####Semantic Versioning:
 
-The bump-versions tasks should be executed after your deploy and optimize task
+The bump-versions tasks should be executed after your deploy and optimize task.
 The task will rename the file app.js to app.version.js, the same will be done to the app.css.
 After that the index.html is updated with the new file references.
 
