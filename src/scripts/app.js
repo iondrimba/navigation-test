@@ -127,11 +127,11 @@ class App {
 
         }
 
-        document.getElementsByClassName('btn-pop')[0].onclick = function clickPop(evt) {
+        document.getElementsByClassName('btn-pop')[0].onclick = function clickPop() {
             router.navigate('/users/:id');
         }
 
-        document.getElementsByClassName('btn-back')[0].onclick = function clickPop(evt) {
+        document.getElementsByClassName('btn-back')[0].onclick = function clickPop() {
             router.back();
         }
 
