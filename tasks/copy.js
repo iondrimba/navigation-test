@@ -7,6 +7,4 @@ module.exports = function () {
 	gulp.src(['./src/styles/app.css'])
 		.pipe(gulp.dest('./public/css'));
 
-	return gulp.src(['./src/templates/index.html'])
-		.pipe(gulp.dest('./public'));
 };

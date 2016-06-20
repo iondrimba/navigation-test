@@ -20,7 +20,9 @@
 	},
 	"rules": {
 	    "eqeqeq": 1,
+		"no-unused-vars": ["warn", { "vars": "local", "args": "after-used" }],
 	    "curly": 2,
-	    "quotes": [2, 'single']
+		"no-console": "off",
+	    "quotes": [2, "single"]
 	}
 }
