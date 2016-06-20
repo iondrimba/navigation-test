@@ -1,3 +1,5 @@
+var NoJQuery = require('nojquery');
+
 class Route {
 
     constructor(obj) {
@@ -24,7 +26,6 @@ class Router {
     constructor() {
         this.routes = [];
         this.started = false;
-        this.historyIndex = 0;
         this.commands = [];
         this.queue = [];
         this.currentRoute;
@@ -37,15 +38,15 @@ class Router {
     }
 
     back() {
-
-        if (this.historyIndex > 1) {
-            this.historyIndex--;
+        if (this.commands.length > 1) {
             this.commands.pop();
 
             this.currentRoute.transitionOut();
             this.currentRoute.transitionOutComplete(this.currentRoute);
 
-            this.currentRoute = this.queue.filter((r) => { return r.path === this.commands[this.commands.length - 1] })[0];
+            this.currentRoute = this.queue.filter((r) => {
+                return r.path === this.commands[this.commands.length - 1];
+            })[0];
             this.currentRoute.transitionIn();
             this.currentRoute.transitionInComplete(this.currentRoute);
         }
@@ -75,28 +76,24 @@ class Router {
                 this.queue.push(item);
             }
 
-            if (this.commands.length === 0) {
-                this.commands.push(r);
-            } else if (this.commands[this.commands.length - 1] !== r) {
+            if (this.commands.length === 0 || this.commands[this.commands.length - 1] !== r) {
                 this.commands.push(r);
             }
         });
 
+        let nextRoute = this.queue.filter((r) => {
+            return r.path === this.commands[this.commands.length - 1];
+        })[0];
 
-        if (this.historyIndex > 0) {
-            if (this.currentRoute && this.currentRoute.visible === true) {
-                this.currentRoute.transitionOut();
-                this.currentRoute.transitionOutComplete(this.currentRoute);
-            }
-
+        if (this.currentRoute && (nextRoute.path !== this.currentRoute.path)) {
+            this.currentRoute.transitionOut();
+            this.currentRoute.transitionOutComplete(this.currentRoute);
         }
-        if (this.commands.length) {
-            this.currentRoute = this.queue.filter((r) => { return r.path === this.commands[this.commands.length - 1] })[0];
-            if (this.currentRoute.visible === false) {
-                this.currentRoute.transitionIn();
-                this.currentRoute.transitionInComplete(this.currentRoute);
-                this.historyIndex++;
-            }
+
+        if (nextRoute.visible === false) {
+            nextRoute.transitionIn();
+            nextRoute.transitionInComplete(nextRoute);
+            this.currentRoute = nextRoute;
         }
     }
     onNavigate(callback) {
@@ -107,20 +104,6 @@ class Router {
 class App {
     constructor() {
         console.log('app');
-        // let count=0;
-
-        // window.onpopstate=function(event) {
-        //     count--;
-        //     console.log('location: '+document.location+', state: '+JSON.stringify(event.state));
-        // };
-
-        // window.onpagehide=function(event) {
-        //     //console.log('onpagehide',event);
-        // };
-
-        // window.onpageshow=function(event) {
-        //     //console.log('onpageshow',event);
-        // };
 
         document.getElementsByClassName('btn-push')[0].onclick = function clickPush() {
             router.navigate('/users');
@@ -144,42 +127,72 @@ class App {
 
         router.addRoute(new Route({
             path: '/',
-            transitionOut: () => { console.log('transitionOut /') },
+            transitionOut: () => {
+                console.log('transitionOut /');
+                $$('.first').removeClass('animate-complete').addClass('animate-out');
+            },
             transitionOutComplete: (route) => {
                 route.visible = false;
                 console.log('transitionOut complete /');
+                console.log('');
+                $$('.first').removeClass('animate-out');
             },
-            transitionIn: () => { console.log('transitionIn /') },
+            transitionIn: () => {
+                console.log('transitionIn /');
+                $$('.first').addClass('animate-in');
+            },
             transitionInComplete: (route) => {
                 route.visible = true;
                 console.log('transitionInComplete complete /', route);
+                console.log('');
+                $$('.first').removeClass('animate-in').addClass('animate-complete');
             }
         }));
         router.addRoute(new Route({
             path: '/users',
-            transitionOut: () => { console.log('transitionOut /users') },
+            transitionOut: () => {
+                console.log('transitionOut /users');
+                $$('.second').removeClass('animate-complete').addClass('animate-out');
+            },
             transitionOutComplete: (route) => {
                 route.visible = false;
-                console.log('transitionOut complete /users', route);
+                console.log('transitionOut users /');
+                console.log('');
+                $$('.second').removeClass('animate-out');
             },
-            transitionIn: () => { console.log('transitionIn /users') },
+            transitionIn: () => {
+                console.log('transitionIn /users');
+                $$('.second').addClass('animate-in');
+            },
             transitionInComplete: (route) => {
                 route.visible = true;
-                console.log('transitionInComplete complete /users', route);
+                console.log('transitionInComplete users /', route);
+                console.log('');
+                $$('.second').removeClass('animate-in').addClass('animate-complete');
             }
         }));
 
         router.addRoute(new Route({
             path: '/users/:id',
-            transitionOut: () => { console.log('transitionOut /users/:id') },
+            transitionOut: () => {
+                console.log('transitionOut /users/:id');
+                $$('.third').removeClass('animate-complete').addClass('animate-out');
+            },
             transitionOutComplete: (route) => {
                 route.visible = false;
-                console.log('transitionOut complete /users/:id');
+                console.log('transitionOut /users/:id');
+                console.log('');
+                $$('.third').removeClass('animate-out');
             },
-            transitionIn: () => { console.log('transitionIn /users/:id') },
+            transitionIn: () => {
+                console.log('transitionIn /users/:id');
+                $$('.third').addClass('animate-in');
+            },
             transitionInComplete: (route) => {
                 route.visible = true;
-                console.log('transitionInComplete complete /users/:id');
+                console.log('transitionInComplete /users/:id', route);
+                console.log('');
+                $$('.third').removeClass('animate-in').addClass('animate-complete');
             }
         }));
 
@@ -188,4 +201,5 @@ class App {
     }
 }
 
+let $$ = NoJQuery;
 window.app = new App();
