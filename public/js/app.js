@@ -606,11 +606,11 @@ var App = function App() {
             route.visible = false;
             console.log('transitionOut complete /');
             console.log('');
-            $$('.first').removeClass('animate-out');
+            $$('.first').removeClass('animate-out').addClass('animate-out-complete');
         },
         transitionIn: function transitionIn() {
             console.log('transitionIn /');
-            $$('.first').addClass('animate-in');
+            $$('.first').addClass('animate-in').removeClass('animate-out-complete');
         },
         transitionInComplete: function transitionInComplete(route) {
             route.visible = true;
@@ -629,11 +629,11 @@ var App = function App() {
             route.visible = false;
             console.log('transitionOut users /');
             console.log('');
-            $$('.second').removeClass('animate-out');
+            $$('.second').removeClass('animate-out').addClass('animate-out-complete');
         },
         transitionIn: function transitionIn() {
             console.log('transitionIn /users');
-            $$('.second').addClass('animate-in');
+            $$('.second').addClass('animate-in').removeClass('animate-out-complete');
         },
         transitionInComplete: function transitionInComplete(route) {
             route.visible = true;

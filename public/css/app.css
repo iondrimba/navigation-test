@@ -1,16 +1,27 @@
+.first, .second, .third {
+  width: 300px;
+  height: 400px;
+  float: left;
+  position: absolute;
+  left: -300px;
+  opacity: 1;
+  -webkit-transition: all  .3s;
+  transition: all  .3s; }
+
 .container {
   width: 300px;
   height: 400px;
   display: block;
   overflow: hidden;
+  position: relative;
   background-color: rgba(96, 124, 138, 0.05); }
 
-.box {
-  width: 300px;
-  height: 400px;
-  display: inline-block;
-  position: relative;
-  opacity: 0; }
+* {
+  margin: 0;
+  padding: 0; }
+
+.ph {
+  width: 900px; }
 
 .first {
   background-color: green; }
@@ -22,14 +33,11 @@
   background-color: blue; }
 
 .animate-in {
-  opacity: 1;
-  -webkit-transition: all  1s;
-  transition: all  1s; }
+  left: 0; }
 
 .animate-complete {
-  opacity: 1; }
+  opacity: 1;
+  left: 0; }
 
 .animate-out {
-  opacity: 0;
-  -webkit-transition: all  1s;
-  transition: all  1s; }
+  left: -300px; }
