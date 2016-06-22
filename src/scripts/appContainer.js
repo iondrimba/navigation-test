@@ -6,6 +6,7 @@ import inputChange from './actions/inputChange';
 import toggleTodo from './actions/toggleTodo';
 import TodoApp from './todoApp.jsx';
 
+
 const getVisibleTodos = (todos, filter) => {
   switch (filter) {
     case 'all':

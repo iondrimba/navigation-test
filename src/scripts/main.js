@@ -3,9 +3,14 @@ import { Provider } from 'react-redux';
 import { render } from 'react-dom';
 import { createStore } from 'redux';
 import AppReducers from './reducers/index';
-import AppContainer from './appContainer';
+import App from './app.jsx';
+import AppContainer from './appContainer.js';
 
-const defaultStore = {
+
+import { Router,Route,  browserHistory } from 'react-router';
+import { syncHistoryWithStore } from 'react-router-redux';
+
+const defaultStore={
     todos: [
         {
             label: 'aaa',
@@ -23,14 +28,19 @@ const defaultStore = {
             id: 2
         }
     ],
-    inputChange:'', 
+    inputChange: '',
     filterTodos: 'all'
 };
 
-let store=createStore(AppReducers, defaultStore,window.devToolsExtension && window.devToolsExtension());
-console.log(store.getState());
+let store=createStore(AppReducers,defaultStore,window.devToolsExtension && window.devToolsExtension());
+const history=syncHistoryWithStore(browserHistory,store);
+
 render(
     <Provider store={store}>
-        <AppContainer />
-    </Provider>,document.getElementById('example')
+        <Router history={history}>
+            <Route path="/*" component={AppContainer}/>            
+        </Router>
+        
+    </Provider>,
+    document.getElementById('example')
 );

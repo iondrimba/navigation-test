@@ -6,24 +6,20 @@ body {
     color: #fff;
 }
 
-a,
-button {
+a, button {
     @include button();
 }
 
 input {
     padding: 8px;
-
     color: #444;
 }
 
-a:hover,
-button:hover:not(.disabled):not(:focus) {
+a:hover, button:hover:not(.disabled):not(:focus) {
     @include button-hover();
 }
 
-a:active,
-button:active {
+a:active, button:active {
     @include button-active();
 }
 
@@ -31,8 +27,7 @@ button.active {
     @include button-focus();
 }
 
-a:focus,
-button:not(.disabled):focus {
+a:focus, button:not(.disabled):focus {
     @include button-focus();
 }
 
@@ -61,23 +56,62 @@ hr {
     transition: all .5s;
 }
 
-
 .add-comp {
-    margin-bottom:20px;
+    margin-bottom: 20px;
 }
 
 .todoItem {
     cursor: pointer;
 }
+
 .todo-list {
-    margin-bottom:20px;
+    margin-bottom: 20px;
 }
+
 .todo-filter {
     button:first-child {
         margin-right: 20px;
     }
 }
+
 .completed:not(button) {
     text-decoration: line-through;
-    color:green;
+    color: green;
+}
+
+%page {
+    width: 300px;
+    height: 400px;
+    position: absolute;
+    transform: translateX(-300px) translateY(0) translate3d(0,0,0);
+    transition: all .3s;
+}
+
+.home {
+    @extend %page;
+    background-color: blue;
+}
+
+.about {
+   @extend %page;
+    background-color: red;
+}
+
+.contact {
+    @extend %page;
+    background-color: yellow;
+}
+
+
+.animate-in {
+    transform: translateX(0) translateY(0) translate3d(0,0,0);
+}
+
+.animate-complete {
+	opacity: 1;
+	transform: translateX(0) translateY(0) translate3d(0,0,0);
+}
+
+.animate-out {
+	transform: translateX(-300px) translateY(0) translate3d(0,0,0);
 }

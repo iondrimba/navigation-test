@@ -383,8 +383,7 @@ body {
   background-color: #252323;
   color: #fff; }
 
-a,
-button {
+a, button {
   padding: 10px;
   background-color: #0066FF;
   color: white;
@@ -402,14 +401,12 @@ input {
   padding: 8px;
   color: #444; }
 
-a:hover,
-button:hover:not(.disabled):not(:focus) {
+a:hover, button:hover:not(.disabled):not(:focus) {
   background-color: #074FBB;
   -webkit-transition: all .3s;
   transition: all .3s; }
 
-a:active,
-button:active {
+a:active, button:active {
   position: relative;
   top: 1px;
   left: 1px; }
@@ -419,8 +416,7 @@ button.active {
   background-color: #35FD58;
   color: #072F14; }
 
-a:focus,
-button:not(.disabled):focus {
+a:focus, button:not(.disabled):focus {
   outline: none;
   background-color: #35FD58;
   color: #072F14; }
@@ -462,3 +458,34 @@ hr {
 .completed:not(button) {
   text-decoration: line-through;
   color: green; }
+
+.home, .about, .contact {
+  width: 300px;
+  height: 400px;
+  position: absolute;
+  -webkit-transform: translateX(-300px) translateY(0) translate3d(0, 0, 0);
+          transform: translateX(-300px) translateY(0) translate3d(0, 0, 0);
+  -webkit-transition: all .3s;
+  transition: all .3s; }
+
+.home {
+  background-color: blue; }
+
+.about {
+  background-color: red; }
+
+.contact {
+  background-color: yellow; }
+
+.animate-in {
+  -webkit-transform: translateX(0) translateY(0) translate3d(0, 0, 0);
+          transform: translateX(0) translateY(0) translate3d(0, 0, 0); }
+
+.animate-complete {
+  opacity: 1;
+  -webkit-transform: translateX(0) translateY(0) translate3d(0, 0, 0);
+          transform: translateX(0) translateY(0) translate3d(0, 0, 0); }
+
+.animate-out {
+  -webkit-transform: translateX(-300px) translateY(0) translate3d(0, 0, 0);
+          transform: translateX(-300px) translateY(0) translate3d(0, 0, 0); }
