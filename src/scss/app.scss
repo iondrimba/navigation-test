@@ -9,30 +9,15 @@
 	background-color: hsla(200, 18%, 46%, 0.05);
 }
 
+body {
+	background-color: #212121;
+}
+
 * {
 	margin: 0;
 	padding:0;
 }
 
-// %box {
-// 	width: 300px;
-// 	height: 400px;
-// 	float: left;
-// 	position: absolute;
-// 	left: -300px;
-// 	opacity: 1;
-// 	transition:all  .3s;
-// }
-
-// @mixin box(){
-// 	width: 300px;
-// 	height: 400px;
-// 	float: left;
-// 	position: absolute;
-// 	left: -300px;
-// 	opacity: 1;
-// 	transition:all  .3s;
-// }
 
 .ph {
 	width: 900px;

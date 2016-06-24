@@ -5,12 +5,9 @@ node_js:
 before_install:
 - gem install sass
 - gem install ruby
-- gem install scss_lint
 - npm install -g npm
 - npm install promise
 before_script:
 - npm install -g gulp
 script:
 - gulp deploy
-- npm test
-- gulp coveralls

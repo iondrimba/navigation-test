@@ -6,15 +6,13 @@ environment:
 install:
   - ps: Install-Product node $env:nodejs_version
   - gem install sass
-  - gem install ruby 
-  - gem install scss_lint
+  - gem install ruby
   - npm install -g npm
   - npm install gulp -g
-  - npm install    
+  - npm install
   - npm install promise
 test_script:
   - gulp deploy
-  - npm test 
 build: off
 matrix:
   fast_finish: true
